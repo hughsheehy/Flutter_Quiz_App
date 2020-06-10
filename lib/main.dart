@@ -12,7 +12,11 @@ class Quizzler extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.grey.shade900,
+        appBar: AppBar(
+          title: Text('Hugh\'s silly quiz app'),
+          backgroundColor: Colors.blueGrey.shade900,
+        ),
+        backgroundColor: Colors.blueGrey.shade800,
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -36,7 +40,6 @@ class _QuizPageState extends State<QuizPage> {
     bool correctAnswer = quizBrain.getCorrectAnswer();
 
     setState(() {
-      //TODO: Step 4 - Use IF/ELSE to check if we've reached the end of the quiz. If so,
       //On the next line, you can also use if (quizBrain.isFinished()) {}, it does the same thing.
       if (quizBrain.isFinished() == true) {
         //TODO Step 4 Part A - show an alert using rFlutter_alert,
@@ -49,6 +52,16 @@ class _QuizPageState extends State<QuizPage> {
           context: context,
           title: 'Finished!',
           desc: 'You\'ve reached the end of the quiz.',
+            buttons: [
+              DialogButton(
+                child: Text(
+                  "Restart!",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                onPressed: () => Navigator.pop(context),
+                width: 120,
+              )
+            ]
         ).show();
 
         //TODO Step 4 Part C - reset the questionNumber,
